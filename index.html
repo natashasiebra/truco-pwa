@@ -10,27 +10,41 @@
     <title>Jogo De Truco</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Truco</h1>
-        <div class="nomes">
-            <label for="nome1">Nome 1: </label>
-            <input type="text" id="nome1" placeholder="coloque seu nome">
+    <div class="topo">
+        <h1>Placar Truco</h1>
+        <button id="resultado-botao">Reiniciar Jogo</button>
+    </div>
+    <div class="times">
+        <div class="time" id="time-a">
+            <h2>Equipe A</h2>
+            <p>Pontos: <span id="pontos-time-a">0</span></p>
         </div>
-        <div class="nomes">
-            <label for="nome2">Nome 2: </label>
-            <input type="text" id="nome2" placeholder="coloque seu nome">
+        <div class="time" id="time-b">
+            <h2>Equipe B</h2>
+            <p>Pontos: <span id="pontos-time-b">0</span></p>
         </div>
-        <div class="scoreboard">
-            <div id="nome1ponto" class="ponto">Nome 1: 0</div>
-            <div id="nome2ponto" class="ponto">Nome 2: 0</div>
+    </div>
+    <div class="pontuacao">
+        <h2>Pontuação da Rodada</h2>
+        <!-- Botões de pontuação para a Equipe A -->
+        <div class="pontuacao-botao">
+            <button class="pontos-botao" data-team="A" data-points="1">1 Ponto A</button>
+            <button class="pontos-botao" data-team="A" data-points="3">3 Pontos A</button>
+            <button class="pontos-botao" data-team="A" data-points="6">6 Pontos A</button>
+            <button class="pontos-botao" data-team="A" data-points="12">12 Pontos A</button>
         </div>
-        <div class="buttons">
-            <button id="umPonto">1 Ponto</button>
-            <button id="tresPontos">3 Pontos</button>
-            <button id="seisPontos">6 Pontos</button>
-            <button id="dozePontos">12 Pontos</button>
-            <button id="resultado">Resutado</button>
+        <!-- Botões de pontuação para a Equipe B -->
+        <div class="pontuacao-botao">
+            <button class="pontos-botao" data-team="B" data-points="1">1 Ponto B</button>
+            <button class="pontos-botao" data-team="B" data-points="3">3 Pontos B</button>
+            <button class="pontos-botao" data-team="B" data-points="6">6 Pontos B</button>
+            <button class="pontos-botao" data-team="B" data-points="12">12 Pontos B</button>
         </div>
+    </div>
+    <div class="resultado">
+        <h2>Vitórias</h2>
+        <p>Equipe A: <span id="vitorias-time-a">0</span></p>
+        <p>Equipe B: <span id="vitorias-time-b">0</span></p>
     </div>
     <script src="js/main.js"></script>
 </body>

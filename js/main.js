@@ -5,45 +5,89 @@ window.onload = () =>{
     }
 };
 
+// Variáveis para controlar o placar e as vitórias das equipes
+let pontosTimeA = 0;
+let pontosTimeB = 0;
+let vitoriasTimeA = 0;
+let vitoriasTimeB = 0;
 
-const nome1NameInput = document.getElementById('nome1');
-const nome2NameInput = document.getElementById('nome2');
-const nome1pontoDisplay = document.getElementById('nome1ponto');
-const nome2pontoDisplay = document.getElementById('nome2ponto');
+// Selecionar elementos HTML
+const pontosTimeAAElement = document.getElementById('pontos-time-a');
+const pontosTimeABElement = document.getElementById('pontos-time-b');
+const vitoriasTimeAElement = document.getElementById('vitorias-time-a');
+const vitoriasTimeBElement = document.getElementById('vitorias-time-b');
+const resultadoBotao = document.getElementById('resultado-botao');
+const timeaBotao = document.getElementById('time-a');
+const timebBotao = document.getElementById('time-b');
+const pontosBotao = document.querySelectorAll('pontos-botao');
 
-let nome1ponto = 0;
-let nome2ponto = 0;
+let activeTime = 'A'; // Começa com a equipe A ativa
 
-document.getElementById('umPonto').addEventListener('click', () => updateponto(1));
-document.getElementById('tresPontos').addEventListener('click', () => updateponto(3));
-document.getElementById('seisPontos').addEventListener('click', () => updateponto(6));
-document.getElementById('dozePontos').addEventListener('click', () => updateponto(12));
-document.getElementById('resultados').addEventListener('click', resultadoPonto);
+// Função para alternar a equipe ativa
+function switchactiveTime() {
+    activeTime = (activeTime === 'A') ? 'B' : 'A';
+}
 
-function updateponto(pontos) {
-    if (nome1ponto < 12 && nome2ponto < 12) {
-        if (nome1ponto < 12) nome1ponto += pontos;
-        if (nome2ponto < 12) nome2ponto += pontos;
-
-        updatepontoDisplay();
+// Função para atualizar o placar e verificar vitória
+// Função para atualizar o placar e verificar vitória
+function updatePontuacao(time, pontos) {
+    if ((time === 'A' && pontosTimeA >= 12) || (time === 'B' && pontosTimeB >= 12)) {
+        alert('O jogo acabou! Reinicie o jogo.');
+        return;
     }
 
-    if (nome1ponto >= 12) {
-        alert(`${nome1NameInput.value || 'Nome 1'} wins!`);
-        resetScore();
-    } else if (nome2ponto >= 12) {
-        alert(`${nome2NameInput.value || 'Nome 2'} wins!`);
-        resultadoPonto();
+    if (time === 'A') {
+        pontosTimeA += pontos;
+        pontosTimeAAElement.textContent = pontosTimeA;
+        if (pontosTimeA >= 12) {
+            vitoriasTimeA++;
+            vitoriasTimeAElement.textContent = vitoriasTimeA; // Atualiza o contador de vitórias da equipe A
+            alert('Equipe A venceu a rodada!');
+            resultadoPontuacao();
+        } else {
+            switchactiveTime();
+        }
+    } else if (time === 'B') {
+        pontosTimeB += pontos;
+        pontosTimeABElement.textContent = pontosTimeB;
+        if (pontosTimeB >= 12) {
+            vitoriasTimeB++;
+            vitoriasTimeBElement.textContent = vitoriasTimeB; // Atualiza o contador de vitórias da equipe B
+            alert('Equipe B venceu a rodada!');
+            resultadoPontuacao();
+        } else {
+            switchactiveTime();
+        }
     }
 }
 
-function resultadoPonto() {
-    nome1ponto = 0;
-    nome2ponto = 0;
-    updatepontoDisplay();
+
+function resultadoPontuacao() {
+    pontosTimeA = 0;
+    pontosTimeB = 0;
+    pontosTimeAAElement.textContent = '0';
+    pontosTimeABElement.textContent = '0';
+    activeTime = 'A'; // Reinicia com a equipe A ativa
 }
 
-function updatepontoDisplay() {
-    nome1pontoDisplay.textContent = `${nome1NameInput.value || 'nome 1'}: ${nome1ponto}`;
-    nome2pontoDisplay.textContent = `${nome2NameInput.value || 'nome 2'}: ${nome2ponto}`;
-}
+// Event Listeners para os botões de pontuação
+pontosBotao.forEach(button => {
+    button.addEventListener('click', () => {
+        const time = button.dataset.time;
+        const pontos = parseInt(button.dataset.pontos);
+        updatePontuacao(time, pontos);
+    });
+});
+
+
+// Event Listener para o botão de reiniciar
+resultadoBotao.addEventListener('click', () => {
+    vitoriasTimeA = 0;
+    vitoriasTimeB = 0;
+    vitoriasTimeAElement.textContent = '0';
+    vitoriasTimeBElement.textContent = '0';
+    resultadoPontuacao();
+});
+
+// Inicialização do placar
+resultadoPontuacao();
