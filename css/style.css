@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.team {
+    margin-bottom: 10px;
+}
+
+.score {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.buttons button {
+    margin: 5px;
+}

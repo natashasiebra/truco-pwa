@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="white" />
+    <link rel="apple-touch-icon" href="images/pwa-icon-256.png" />
+    <title>Jogo De Truco</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Truco</h1>
+        <div class="nomes">
+            <label for="nome1">Nome 1: </label>
+            <input type="text" id="nome1" placeholder="coloque seu nome">
+        </div>
+        <div class="nomes">
+            <label for="nome2">Nome 2: </label>
+            <input type="text" id="nome2" placeholder="coloque seu nome">
+        </div>
+        <div class="scoreboard">
+            <div id="nome1ponto" class="ponto">Nome 1: 0</div>
+            <div id="nome2ponto" class="ponto">Nome 2: 0</div>
+        </div>
+        <div class="buttons">
+            <button id="umPonto">1 Ponto</button>
+            <button id="tresPontos">3 Pontos</button>
+            <button id="seisPontos">6 Pontos</button>
+            <button id="dozePontos">12 Pontos</button>
+            <button id="resultado">Resutado</button>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
